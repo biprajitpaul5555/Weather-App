@@ -1,0 +1,28 @@
+<%- include('partials/header'); -%>
+
+<form action="/" method="post" class="card container">
+    <div class="search">
+        <input
+            type="text"
+            name="cityName"
+            id="city"
+            placeholder="Enter your location here"
+            autocomplete="off"
+            spellcheck="false"
+            class="search-bar" />
+        <button class="fa-solid fa-magnifying-glass" type="submit"></button>
+    </div>
+    <div class="weather">
+        <h2 class="city">Weather in <%= city %> </h2>
+        <h1 class="temp"> <%= temp %> &deg;C</h1>
+        <div class="flex">
+            <img src="https://openweathermap.org/img/wn/<%= icon %>@2x.png" alt="weatherIcon" class="icon" />
+            <div class="description"> <%= description %> </div>
+        </div>
+        <div class="pressure">Pressure: <%= pressure %> hPa</div>
+        <div class="humidity">Humidity: <%= humidity %> %</div>
+        <div class="wind">Wind speed: <%= wind %> m/s</div>
+    </div>
+</form>
+
+<%- include('partials/footer'); -%>
