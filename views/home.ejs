@@ -25,4 +25,12 @@
     </div>
 </form>
 
+<% if(err!==null){ %>
+    <script>
+        const errorLocation = '<%- JSON.stringify(err) %>';
+        console.log(errorLocation);
+        alert('error: Cannot find weather data from ' + errorLocation);
+    </script>
+<% } %>
+
 <%- include('partials/footer'); -%>

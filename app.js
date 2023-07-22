@@ -17,9 +17,10 @@ let getWeatherData = async (query) => {
         console.log(weatherData);
         return weatherData;
     } catch (err) {
-        return err;
+        return undefined;
     }
 };
+let prevWeatherData;
 
 app.get("/", async (req, res) => {
     try {
@@ -35,7 +36,9 @@ app.get("/", async (req, res) => {
             pressure: pressure,
             humidity: humidity,
             wind: speed,
+            err: null,
         });
+        prevWeatherData = weatherData;
     } catch (err) {
         res.send(err.message);
     }
@@ -54,9 +57,24 @@ app.post("/", async (req, res) => {
             pressure: pressure,
             humidity: humidity,
             wind: speed,
+            err: null,
         });
+        prevWeatherData = weatherData;
     } catch (err) {
-        res.send(err.message);
+        // res.send(err.message);
+        const { description, icon } = prevWeatherData.weather[0];
+        const { temp, pressure, humidity } = prevWeatherData.main;
+        const { speed } = prevWeatherData.wind;
+        res.render("home", {
+            city: prevWeatherData.name,
+            description: description,
+            icon: icon,
+            temp: temp,
+            pressure: pressure,
+            humidity: humidity,
+            wind: speed,
+            err: req.body.cityName,
+        });
     }
 });
 
