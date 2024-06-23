@@ -7,7 +7,7 @@ A weather forecasting app that shows current temperature, pressure, humidity and
 ## Features
 
 - Current time weather data
-- Random background images
+- Attractive background image
 - Handles wrong location queries
 - Cross platform
 
